@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 text-center">Salidas del barco: {{nombreBarco}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="d-flex flex-wrap justify-content-around">
+                @for (s of salidas; track $index) {
+
+                    <div class="card mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <strong>Destino:</strong>
+                                <span>{{s.destino}}</span>
+                            </h5>
+                            <p class="card-text"><strong>Fecha de salida:</strong> <span>{{s.horaSalida}}</span></p>
+                            <p class="card-text"><strong>Datos del patrón:</strong> <span>{{s.dniPatron}}</span></p>
+                            @if (_socio.role==="ROLE_ADMIN") {
+
+                            <a routerLink="/addSalida/{{s.idSalida}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a (click)="confirmarBorrado(s)" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

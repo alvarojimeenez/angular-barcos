@@ -1,0 +1,40 @@
+<div class="col-lg-8 mx-auto">
+    <h1 class="display-4 text-center">Barcos</h1>
+</div>
+<div class="container">
+
+    <table class="table">
+    
+    <thead>
+        
+        <tr>
+            <th>Matricula</th>
+            <th>Nombre</th>
+            <th>Numero del amarre</th>
+            <th>Cuota</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        @for (barco of barcos; track $index) {
+    
+            <tr th:each="barco :${barcos}">
+                <th>{{barco.matricula}}</th>
+                <th>{{barco.nombreBarco}}</th>
+                <th>{{barco.numAmarre}}</th>
+                <th>{{barco.cuota}}€</th>
+                <th><a routerLink="/salidasByBarco/{{barco.idBarco}}" class="btn btn-success">Salidas</a></th>
+                @if (_socio.role==="ROLE_ADMIN") {
+                <th><a routerLink="/addBarco/{{barco.idBarco}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a></th>
+                <th><a (click)="confirmarBorrado(barco)" class="btn btn-danger"><i class="bi bi-trash"></i></a></th>
+                }
+            </tr>
+        }
+    </tbody>
+    
+    </table>
+
+</div>

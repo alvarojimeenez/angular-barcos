@@ -1,0 +1,29 @@
+<div class="col-lg-8 mx-auto">
+    <h1 class="display-4 text-center">Socios</h1>
+</div>
+<div class="container">
+
+    <div class="row text-center">
+        @for (socio of socios; track  $index) {
+  
+          <div class="col-xl-3 col-sm-6 mb-5">
+              <div class="bg-color rounded shadow-sm py-5 px-4"><img src="https://c0.klipartz.com/pngpicture/831/88/gratis-png-perfil-de-usuario-iconos-de-la-computadora-interfaz-de-usuario-mistica.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                  <h5 class="mb-0">{{socio.name}} {{socio.lastName}} @if (sociosPatrones.includes(socio.dni)) {<span title="Es patrón">✔</span>}</h5>
+                  <span class="small text text-muted">{{socio.email}}</span><br> 
+                  <span class="small text-uppercase text-muted">{{socio.phone}}</span>
+                  <ul class="social mb-0 list-inline mt-3">
+                      <li class="text"><a class="btn" (click)="getSocioById(socio)" routerLinkActive="active"> <i class="bi bi-info-circle-fill icono"></i></a></li>
+                      <div class="grid">
+                      @if (role() === 'ROLE_ADMIN') {
+
+                        <li class="text"><a class="btn" routerLink="/addSocio/{{socio.idSocio}}" routerLinkActive="active"><i class="bi bi-pencil-square icono"></i></a></li>
+                        <li class="text"><a class="btn" (click)="confirmarBorrado(socio)" routerLinkActive="active"> <i class="bi bi-trash icono"></i></a></li>
+                      }
+                    </div>
+                </ul>
+              </div>
+          </div>
+        }
+        
+    </div>
+</div>

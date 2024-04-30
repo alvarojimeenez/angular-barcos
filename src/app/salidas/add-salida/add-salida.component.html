@@ -1,0 +1,68 @@
+<div class="container px-5 my-5 text-center">
+    <div class="row justify-content-center">
+        <div class="co-lg-8">
+            <div class="card border-0 rounded-3 shadow-lg">
+                <div class="card-body p-4">
+                    <h2>{{id!=null ? "Editar salida" : "Agregar salida"}}</h2>
+                    <form [formGroup]="myForm">  
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Hora salida</label>
+                            <input type="datetime-local" class="form-control" formControlName="horaSalida">
+                            @if (isValidField("horaSalida")) {
+                                <span class="text-danger">{{horaErrorMsg}}</span>
+                            } 
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Destino</label>
+                            <input type="text" class="form-control"formControlName="destino">
+                            @if (isValidField("destino")) {
+                                <span class="text-danger">El destino es requerido</span>
+                            } 
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">DNI del patron</label>
+                            <input type="text" class="form-control" formControlName="dniPatron">
+                            @if (isValidField("dniPatron")) {
+                                <span class="text-danger">{{dniErrorMsg}}</span>
+                            }  
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Barco</label>
+                            <select class="form-control" formControlName="idBarco">
+                                <option value="">Seleccione un barco</option>
+                                @for (barco of barcos; track $index) {
+                                    
+                                    <option value="{{barco.idBarco}}">{{barco.nombreBarco}}</option>
+                                }
+                            </select>
+                            @if (isValidField("idBarco")) {
+                                <span class="text-danger">El barco es requerido</span>
+                            }
+                        </div>
+                        @if (id!=null) {
+                            <button type="submit" class="btn btn-info" name="anadir" (click)="updateSalida()">Editar</button>
+                        }@else {
+
+                            <button type="submit" class="btn btn-info" name="anadir" (click)="addSalida()">Añadir</button>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div>
+         {{myForm.valid | json}}
+        {{myForm.value | json}} 
+    
+        @for (control of myForm.controls | keyvalue; track $index) {
+            @if (control.value.errors) {
+                {{control.key}} tiene errores: {{control.value.errors | json}}
+            }
+        }
+    </div>  -->
+</div>
+
+

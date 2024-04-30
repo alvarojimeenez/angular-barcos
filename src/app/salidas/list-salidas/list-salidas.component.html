@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 text-center">Salidas</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <app-search (searchSalida) = "filtrarPorSalida($event)"></app-search>
+            @if(!search || salidas.length >0) {
+
+                <div class="d-flex flex-wrap justify-content-around">
+                    @for (salida of salidas; track $index) {
+                        
+                        <div class="card mb-3"
+                            style="width: 18rem;">
+                            <div class="card-body">
+                                
+                                <h5 class="card-title">
+                                    <strong>Destino:</strong> <span th:text="${salida.destino}">{{salida.destino}}</span>
+                                </h5>
+                                <p class="card-text">
+                                    <strong>Fecha de salida:</strong> <span>{{salida.horaSalida}}</span>
+                                </p>
+                                <p class="card-text">
+                                    <strong>Dni del patrón:</strong> <span>{{salida.dniPatron}}</span>
+                                </p>
+                                <p class="card-text">
+                                    <strong>Barco:</strong> <span> <a (click)="cargarBarco(salida.idBarco)">{{salida.idBarco}}</a></span>
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }@else if( salidas.length ==0){
+                <div class="d-flex flex-wrap justify-content-around">
+                    <p>No existen resultados en la busqueda</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

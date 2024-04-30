@@ -1,0 +1,9 @@
+a{
+    cursor: pointer;
+
+}
+
+a:hover {
+    font-weight: bolder;
+    color: yellow;
+}

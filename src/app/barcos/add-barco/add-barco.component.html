@@ -1,0 +1,74 @@
+<div class="container px-5 my-5 text-center">
+    <div class="row justify-content-center">
+        <div class="co-lg-8">
+            <div class="card border-0 rounded-3 shadow-lg">
+                <div class="card-body p-4">
+                    <h2>{{id!=null ? "Editar barco" : "Agregar barco"}}</h2>
+                    <form [formGroup]="myForm">
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Matricula</label>
+                            <input type="text" class="form-control" formControlName="matricula">
+                            @if (isValidField("matricula")) {
+                                <span class="text-danger">{{matriculaErrorMsg}}</span>
+                            } 
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Nombre</label>
+                            <input type="text" class="form-control" formControlName="nombreBarco">
+                            @if (isValidField("nombreBarco")) {
+                                <span class="text-danger">El nombre del barco es requerido</span>
+                            } 
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Numero del amarre</label>
+                            <input type="number" class="form-control" formControlName="numAmarre">
+                            @if (isValidField("numAmarre")) {
+                                <span class="text-danger">{{numAmarreErrorMsg}}</span>
+                            } 
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Cuota</label>
+                            <input type="number" class="form-control" formControlName="cuota">
+                            @if (isValidField("cuota")) {
+                                <span class="text-danger">{{cuotaErrorMsg}}</span>
+                            } 
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-check-label" for="exampleCheck1">Socio</label>
+                            <select class="form-control" formControlName="idSocio">
+                                <option value="">Seleccione un socio</option>
+                                @for (socio of socios; track $index) {
+                                    <option value="{{socio.idSocio}}">{{socio.name}} {{socio.lastName}}</option>
+
+                                }
+                            </select>
+                            @if (isValidField("idSocio")) {
+                                <span class="text-danger">El socio es requerido</span>
+                            }
+                        </div>
+                        @if (id!=null) {
+                            <button type="submit" class="btn btn-info" name="anadir" (click)="updateBarco()">Editar</button>
+                        }@else {
+                            <button type="submit" class="btn btn-info" name="anadir" (click)="addBarco()">Añadir</button>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div>
+    {{myForm.valid | json}}
+    {{myForm.value | json}}
+
+    @for (control of myForm.controls | keyvalue; track $index) {
+        @if (control.value.errors) {
+            {{control.key}} tiene errores: {{control.value.errors | json}}
+        }
+    }
+</div> -->

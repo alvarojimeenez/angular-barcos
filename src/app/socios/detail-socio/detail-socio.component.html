@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Detalles del Socio</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{socio.name}} {{socio.lastName}}</h5>
+                    <p class="card-text">
+                        <strong>Dni:</strong> <span>{{socio.dni}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Email:</strong> <span>{{socio.email}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Dirección:</strong> <span>{{socio.address}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Teléfono:</strong> <span>{{socio.phone}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="text-right mt-3">
+                <a routerLink="/listSocios" class="btn btn-danger">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>

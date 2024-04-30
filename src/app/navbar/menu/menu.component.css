@@ -1,0 +1,12 @@
+.color{
+    color: white;
+}
+
+.color:hover{
+    background-color: white;
+    color: black;
+}
+
+.a{
+    color: black !important;
+}
